@@ -1,0 +1,65 @@
+{%extends 'bootstrap/base.html'%}
+
+{%block content%}
+{%include 'header.html'%}
+
+<!--custom header-->
+
+        <header class="bg-dark py-5" style = 'background-image: linear-gradient(rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.8)),url({{cafe.img_url}})'>
+
+
+            <div class="container px-4 px-lg-5 my-5">
+
+                <div class="text-center text-white">
+                    <h1 class=" cafe-name">{{cafe.name}}</h1>
+<!--                    <p class="lead fw-normal text-white-50 mb-0">Kickstart your day with a fresh taste of coffee</p>-->
+                    <span >
+                </div>
+            </div>
+        </header>
+
+<div class="container cafe-container">
+  <div class="row cafe-row">
+
+    <div class="col-lg-6 col-md-12 col-sm-12 cafe-col">
+<!--        <h1 class = 'cafe-name'>{{cafe.name}}</h1>-->
+        <a class = 'cafe-color-espresso' href={{cafe.map_url}}><h1 class="cafe-details">Located in: {{cafe.location}}</h1></a>
+        <h2 class="cafe-details"> 🔌 : {%if cafe.has_sockets %}
+        {{' ✅ '}} {%else%} {{'❌  '}} {%endif%}</h2>
+
+        <h2 class="cafe-details"> 🚻 : {%if cafe.has_toilet %}
+        {{' ✅ '}} {%else%} {{'❌  '}} {%endif%}</h2>
+
+        <h2 class="cafe-details"> 📶 : {%if cafe.has_wifi %}
+        {{' ✅ '}} {%else%} {{'❌  '}} {%endif%}</h2>
+
+        <h2 class="cafe-details">Seats: {{cafe.seats}}</h2>
+
+        <h2 class="cafe-details">Price: {{cafe.coffee_price}}</h2>
+    </div>
+
+
+     <div class="col-lg-6 col-md-12 col-sm-12 cafe-col">
+        <img src={{cafe.img_url}} class = 'card-img-top'>
+    </div>
+
+
+
+  </div>
+</div>
+<div class = 'container'>
+    <div class="row">
+        <div class = 'col-lg'>
+
+            <form method = 'POST' action = {{url_for('edit_rating', cafe_id = cafe.id)}}>
+<button class="btn btn-dark btn-outline-dark nav-link vertical-center", type="submit" }}>
+                            Edit Coffee Rating ☕
+                        </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%include 'footer.html'%}
+{%endblock%}
